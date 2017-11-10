@@ -2,7 +2,7 @@ import express from 'express';
 import expressValidator from 'express-validator';
 import bodyParser from 'body-parser';
 import path from 'path';
-// TODO: ADD ROUTES
+import routes from './routes';
 
 const app = express();
 
@@ -12,6 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-// app.use('/api', routes)
+app.use('/api', routes)
 
 export default app;

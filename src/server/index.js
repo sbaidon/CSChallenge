@@ -10,6 +10,7 @@ mongoose.connect(process.env.DATABASE, {
 mongoose.Promise = global.Promise;
 
 // TODO: Import Models
+import './models/Log';
 
 mongoose.connection.on('error', err => {
   console.error('There were some errors: ', err);
