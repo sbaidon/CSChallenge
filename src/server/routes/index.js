@@ -1,9 +1,17 @@
 import express from 'express';
-import { saveLog } from '../controllers/logController';
+import { saveLog, getLogs } from '../controllers/logController';
 import { getCoverArt } from '../controllers/externalApi';
 
 const router = express.Router();
 
-router.post('/coverart', saveLog, getCoverArt);
+const catchErrors = fn => {
+  return function(req, res, next) {
+    return fn(req, res, next).catch(next);
+  };
+};
+
+router.get('/coverart', catchErrors(saveLog), catchErrors(getCoverArt));
+
+router.get('/logs', catchErrors(getLogs));
 
 export default router;
